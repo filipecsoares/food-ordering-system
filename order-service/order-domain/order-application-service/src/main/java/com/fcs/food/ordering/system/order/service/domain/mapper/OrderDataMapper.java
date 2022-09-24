@@ -7,6 +7,7 @@ import com.fcs.food.ordering.system.domain.valueobject.RestaurantId;
 import com.fcs.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import com.fcs.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import com.fcs.food.ordering.system.order.service.domain.dto.create.OrderAddress;
+import com.fcs.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
 import com.fcs.food.ordering.system.order.service.domain.entity.Order;
 import com.fcs.food.ordering.system.order.service.domain.entity.OrderItem;
 import com.fcs.food.ordering.system.order.service.domain.entity.Product;
@@ -43,6 +44,14 @@ public class OrderDataMapper {
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getStatus())
                 .message(message)
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getStatus())
+                .failureMessages(order.getFailureMessages())
                 .build();
     }
 
